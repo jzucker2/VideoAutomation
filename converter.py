@@ -33,7 +33,10 @@ class Converter:
     print os.listdir(self.processing_folder)
     print self.get_command(new_video)
     print ' '.join(self.get_command(new_video))
+    print 'new video.source: ' + new_video.source
+    print 'original copy exists: ' + str(new_video.exists())
     conversion = subprocess.Popen(self.get_command(new_video), stderr=subprocess.PIPE, stdin=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
+    print 'conversion ended'
     print conversion
     print '------------'
     return True

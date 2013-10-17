@@ -12,6 +12,8 @@ class Video:
     return os.path.basename(self.source)
   def get_filename(self):
     return os.path.splitext(self.get_file())[0]
+  def exists(self):
+    return os.path.exists(self.source)
   def get_format(self):
     return jvr_helper.get_format(self.source)
     # format = os.path.splitext(self.source)[1]
