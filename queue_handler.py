@@ -36,7 +36,7 @@ class QueueHandler:
     print new_video.source
     if self.converter.convert(new_video, self.converted_folder):
       print 'success, now remove'
-      #self.remove_video(new_video)
+      self.remove_video(new_video)
     else:
       print 'failure'
       new_video.move(self.reject_folder)

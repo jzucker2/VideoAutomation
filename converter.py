@@ -36,7 +36,7 @@ class Converter:
     conversion = subprocess.Popen(self.get_command(new_video), stderr=subprocess.PIPE, stdin=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
     print conversion
     print '------------'
-    return False
+    return True
 
 
 def main():
