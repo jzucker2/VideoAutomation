@@ -17,7 +17,10 @@ class CompletedFolderHandler():
   def move_to_queue(self):
     new_videos_list = self.video_collector.get_all_new_videos()
     for new_video in new_videos_list:
-      new_video.move(self.queue_folder, True)
+      deleteFolder = True
+      if new_video.get_directory() == self.watch_folder:
+        deleteFolder = False
+      new_video.move(self.queue_folder, deleteFolder)
 
 
 
