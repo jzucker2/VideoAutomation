@@ -1,6 +1,9 @@
 # Mac OSX stuff
 .DS_Store
 
+# ignore Logs folder
+Logs/
+
 *.py[cod]
 
 # C extensions

@@ -3,6 +3,7 @@
 import os
 import subprocess
 
+import jvr_helper
 import video
 
 PROCESSING_FOLDER = os.path.join(os.environ.get('HOME'), 'Movies/Processing')
@@ -19,26 +20,26 @@ class Converter:
     elif new_video.get_format() == 'avi':
       command.extend(['-vcodec', 'libx264'])
     else:
-      print 'unrecognized format: ' + new_video.get_format()
+      jvr_helper.log('unrecognized format: ' + new_video.get_format())
       raise 'unrecognized format'
-    print new_video.get_destination(self.converted_folder)
+    jvr_helper.log(new_video.get_destination(self.converted_folder))
     #command.append(new_video.get_destination(self.converted_folder))
     command.append(new_video.get_converted_file_path(self.converted_folder))
     return command
 
   def convert(self, new_video, destination_directory):
-    print '------------'
+    jvr_helper.log('------------')
     new_video.move(self.processing_folder)
-    print 'self.processing_folder'
-    print os.listdir(self.processing_folder)
-    print self.get_command(new_video)
-    print ' '.join(self.get_command(new_video))
-    print 'new video.source: ' + new_video.source
-    print 'original copy exists: ' + str(new_video.exists())
+    jvr_helper.log('self.processing_folder')
+    jvr_helper.log(os.listdir(self.processing_folder))
+    jvr_helper.log(self.get_command(new_video))
+    jvr_helper.log(' '.join(self.get_command(new_video)))
+    jvr_helper.log('new video.source: ' + new_video.source)
+    jvr_helper.log('original copy exists: ' + str(new_video.exists()))
     conversion = subprocess.Popen(self.get_command(new_video), stderr=subprocess.PIPE, stdin=subprocess.PIPE, stdout=subprocess.PIPE).communicate()
-    print 'conversion ended'
-    print conversion
-    print '------------'
+    jvr_helper.log('conversion ended')
+    jvr_helper.log(conversion)
+    jvr_helper.log('------------')
     return True
 
 

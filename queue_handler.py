@@ -20,29 +20,28 @@ class QueueHandler:
     self.converted_folder = kwargs.get('converted_folder', CONVERTED_FOLDER)
     self.converter = converter.Converter(processing_folder=self.processing_folder, converted_folder=self.converted_folder)
   def get_videos(self):
-    pass
     return [video.Video(source=(os.path.join(self.queue_folder, video_path))) for video_path in os.listdir(self.queue_folder)]
     #return [video.Video(source=video_path) for video_path in os.listdir(self.queue_folder)]
   def remove_video(self, old_video):
     os.unlink(old_video.source)
   def process_video(self, new_video):
-    print 'process_video'
-    print new_video.source
+    jvr_helper.log('process_video')
+    jvr_helper.log(new_video.source)
     if (new_video == None) or (new_video.source == '.DS_Store'):
       return
-    print 'move new_video'
+    jvr_helper.log('move new_video')
     new_video.move(self.processing_folder)
-    print 'finish move'
-    print new_video.source
+    jvr_helper.log('finish move')
+    jvr_helper.log(new_video.source)
     if self.converter.convert(new_video, self.converted_folder):
-      print 'success, now remove'
+      jvr_helper.log('success, now remove')
       self.remove_video(new_video)
     else:
-      print 'failure'
+      jvr_helper.log('failure')
       new_video.move(self.reject_folder)
   def process(self):
     videos = self.get_videos()
-    print videos
+    jvr_helper.log(videos)
     for new_video in videos:
       self.process_video(new_video)
 

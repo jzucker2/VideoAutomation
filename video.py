@@ -24,13 +24,13 @@ class Video:
   def get_directory(self):
     return os.path.dirname(self.source)
   def move(self, destination_directory, deleteSourceDirectory=False):
-    print 'move'
-    print deleteSourceDirectory
+    jvr_helper.log('move')
+    jvr_helper.log(deleteSourceDirectory)
     jvr_helper.ensure_path(destination_directory)
     destination = self.get_destination(destination_directory)
-    print 'destination: ' + destination
-    print 'now try to move'
-    print 'self.source: ' + self.source
+    jvr_helper.log('destination: ' + destination)
+    jvr_helper.log('now try to move')
+    jvr_helper.log('self.source: ' + self.source)
     shutil.move(self.source, destination)
     if deleteSourceDirectory:
       shutil.rmtree(self.get_directory())
