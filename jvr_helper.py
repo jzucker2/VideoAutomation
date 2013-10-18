@@ -18,7 +18,7 @@ def get_log_path():
   ensure_path(LOG_FOLDER)
   current_time = datetime.date.today()
   current_time_string = current_time.strftime('%m-%d-%Y')
-  log_file = current_time_string + '.txt'
+  log_file = 'jvr.log.' + current_time_string + '.txt'
   return os.path.join(LOG_FOLDER, log_file)
 
 def log(log_message):
