@@ -27,14 +27,17 @@ def log(log_message):
     log_line = str(datetime.datetime.today()) + ':  ' + str(log_message) + '\n'
     log.write(log_line)
 
+def get_conversion_formats():
+  return CONVERT_FORMAT_LIST
+
 def get_format(file_path):
   format = os.path.splitext(file_path)[1]
   format = format.replace('.', '')
   return format.lower()
 
-def should_handle_format(video):
+def should_handle_format(video, formats):
   format = get_format(video)
-  if format in CONVERT_FORMAT_LIST:
+  if format in formats:
     return True
   else:
     return False

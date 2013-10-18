@@ -20,18 +20,18 @@ class VideoListCollector():
       if os.path.isdir(self.get_full_path(folder)):
         video_folders.append(self.get_full_path(folder))
     return video_folders
-  def add_video_from_folder(self, folder):
+  def add_video_from_folder(self, folder, formats):
     for item in os.listdir(folder):
       full_path = os.path.join(folder, item)
-      if (jvr_helper.should_handle_format(item)) and (item.find('sample') ==-1) and not (os.path.isdir(full_path)):
+      if (jvr_helper.should_handle_format(item, formats)) and (item.find('sample') ==-1) and not (os.path.isdir(full_path)):
         #full_path = os.path.join(folder, item)
         self.videos.append(video.Video(source=full_path))
   def get_all_new_videos(self):
     video_folders = self.get_all_video_folders()
     for folder in video_folders:
-      self.add_video_from_folder(folder)
+      self.add_video_from_folder(folder, jvr_helper.get_conversion_formats())
     # now add loose videos
-    self.add_video_from_folder(self.watch_folder)
+    self.add_video_from_folder(self.watch_folder, jvr_helper.get_conversion_formats())
     return self.videos
 
 if __name__ == '__main__':
