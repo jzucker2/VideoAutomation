@@ -13,7 +13,7 @@ class Converter:
     self.processing_folder = kwargs.get('processing_folder', PROCESSING_FOLDER)
     self.converted_folder = kwargs.get('converted_folder', CONVERTED_FOLDER)
   def get_command(self, new_video):
-    command = ['ffmpeg', '-i', new_video.source]
+    command = ['/usr/local/bin/ffmpeg', '-i', new_video.source]
     if new_video.get_format() == 'mkv':
       command.extend(['-y', '-f', 'mp4', '-vcodec', 'copy', '-ac', '2', '-c:a', 'libfaac'])
     elif new_video.get_format() == 'avi':
