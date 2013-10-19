@@ -19,7 +19,7 @@ def main():
   completed_downloads_folder_handler = completed_folder_handler.CompletedFolderHandler(queue_folder=QUEUE_FOLDER, watch_folder=WATCH_FOLDER)
   completed_downloads_folder_handler.move_to_queue()
   queue = queue_handler.QueueHandler(queue_folder=QUEUE_FOLDER, processing_folder=PROCESSING_FOLDER, reject_folder=REJECT_FOLDER, converted_folder=CONVERTED_FOLDER)
-  queue.process()
+  queue.process_all_conversions()
 
 if __name__ == '__main__':
   main()
