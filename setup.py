@@ -4,7 +4,7 @@ import os
 import subprocess
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
-PATH_TO_CRONJOB = os.path.join(SCRIPT_DIRECTORY, '.crontab')
+PATH_TO_CRONJOB = os.path.join(os.environ.get('HOME'), '.crontab')
 PATH_TO_JVR = os.path.join(SCRIPT_DIRECTORY, 'jvr.py')
 
 def get_crontab():
