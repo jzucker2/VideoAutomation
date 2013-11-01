@@ -1,5 +1,6 @@
 VideoAutomation
 ===============
+This is a program that watches a chosen Download folder and can convert all video files into Apple compatible formats
 
 To Do List
 ----------
